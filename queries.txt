@@ -1,0 +1,106 @@
+DATABASE FOR GUVI ZEN 
+
+create database guvi_zen;
+
+use guvi_zen;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+USERS:
+
+
+CREATE TABLE users (
+userid INTEGER AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(100),
+useremail VARCHAR(100),
+batchid INTEGER
+);
+
+
+INSERT INTO users(username, useremail, batchid) VALUES
+    ("Vasanth", "vasanth@gmail.com", 20),
+    ("Ruban", "ruban@gmail.com", 10),
+    ("Sathya", "sathya@gmail.com", 30),
+    ("Sasee", "sasee@gmail.com", 40);
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+MENTORS:
+
+
+CREATE TABLE mentors (
+mentorid INTEGER AUTO_INCREMENT PRIMARY KEY,
+mentorname VARCHAR(100),
+mentoremail VARCHAR(100)
+);
+
+
+INSERT INTO mentors(mentorname, mentoremail) VALUES
+    ("Rupan", "Rupan@gmail.com"),
+    ("Nagaraj", "nagaraj@gmail.com"),
+	("Aanandh", "Aanadh@gmail.com");
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------      
+
+CODEKATA:
+
+
+CREATE TABLE codekata (
+    userid INTEGER,
+    number_of_problems_solved INTEGER,
+    FOREIGN KEY (userid)
+        REFERENCES users (userid)
+);
+
+
+INSERT INTO codekata(userid, number_of_problems_solved) VALUES
+    (1, 101),
+    (2, 100),
+    (3, 99),
+    (4, 98);
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+ATTENDANCE:
+
+
+CREATE TABLE attendance (
+attendanceid INTEGER AUTO_INCREMENT PRIMARY KEY,
+userid INTEGER,
+topicsid INTEGER,
+    attended BOOLEAN,
+    FOREIGN KEY (userid) REFERENCES users(userid)
+);
+
+
+INSERT INTO attendance(userid, topicsid, attended) VALUES
+    (2, 3, true),
+    (4, 1, true),
+    (1, 2, false),
+    (3, 4, true);
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+REQUIREMENTS:
+
+
+CREATE TABLE Requirements (
+driveid INTEGER AUTO_INCREMENT PRIMARY KEY,
+userid INTEGER,
+company VARCHAR(100),
+    FOREIGN KEY (userid) REFERENCES users(userid)
+);
+
+
+INSERT INTO Requirements(userid, company) VALUES
+    (1, "Google"), 
+    (2, "Amazon"),
+    (3, "Snapdragon"),
+    (4, "Apple");
+
+
+
